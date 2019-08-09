@@ -92,7 +92,7 @@ class Cursor
     when :down
         update_pos(MOVES[:down])
     else
-        puts "fake news"
+        puts "bad input!"
     end
   end
 

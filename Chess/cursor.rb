@@ -79,7 +79,9 @@ class Cursor
     case key
     when :ctrl_c
         Process.exit(0)
-    when :return || :space
+    when :return
+        @cursor_pos
+    when :space
         @cursor_pos
     when :left
         update_pos(MOVES[:left])
@@ -97,5 +99,6 @@ class Cursor
   def update_pos(diff)
     new_pos = [@cursor_pos.first + diff.first, @cursor_pos.last + diff.last]
     @cursor_pos = new_pos if new_pos.first >= 0 && new_pos.first <= 7 && new_pos.last >= 0 && new_pos.last <= 7
+    "updated"
   end
 end

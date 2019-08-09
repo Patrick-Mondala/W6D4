@@ -6,7 +6,7 @@ class Display
 
     def initialize(board)
         @board = board
-        @cursor = Cursor.new([0,0], board)
+        @cursor = Cursor.new([7,0], board)
     end
 
     def show
@@ -21,13 +21,14 @@ class Display
             visual_idx -= 1
         end
         puts "   A   B   C   D   E   F   G   H"
-        @cursor.get_input
+        @testing = false if @cursor.get_input.is_a?(Array)
     end
 
     def render
-        testing = true
+        @testing = true
         @cursor.get_input
-        show #while testing
+        show while @testing
+        @cursor.cursor_pos
     end
 
 end

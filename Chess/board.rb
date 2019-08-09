@@ -4,7 +4,7 @@ require_relative "pawn.rb"
 require_relative "null_piece.rb"
 
 class Board
-    attr_reader :sentinel, :populate_board #maybe remove later
+    attr_reader :sentinel
     attr_accessor :rows
     def initialize
         @sentinel = NullPiece.instance

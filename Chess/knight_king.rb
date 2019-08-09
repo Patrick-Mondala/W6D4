@@ -8,7 +8,7 @@ class Knight < Piece
 
     def initialize(color, board, pos) 
         super
-        @symbol = "♞"
+        @symbol = " ♞ "
     end
 
     def move_diffs 
@@ -24,7 +24,7 @@ class King < Piece
 
     def initialize(color, board, pos) 
         super
-        @symbol = "♚"
+        @symbol = " ♚ "
     end
 
      def move_diffs

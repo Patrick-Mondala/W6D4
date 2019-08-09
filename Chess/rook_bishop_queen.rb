@@ -8,7 +8,7 @@ class Rook < Piece
 
     def initialize(color, board, pos) 
         super
-        @symbol = "♜"
+        @symbol = " ♜ "
     end
 
     def move_dirs
@@ -24,7 +24,7 @@ class Bishop < Piece
 
     def initialize(color, board, pos) 
         super
-        @symbol = "♝"
+        @symbol = " ♝ "
     end
 
     def move_dirs
@@ -39,7 +39,7 @@ class Queen < Piece
 
     def initialize(color, board, pos) 
         super
-        @symbol = "♛"
+        @symbol = " ♛ "
     end
 
     def move_dirs

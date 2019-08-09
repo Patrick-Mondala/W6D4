@@ -5,7 +5,7 @@ class Pawn < Piece
 
     def initialize(color, board, pos) 
         super
-        @symbol = "♟"
+        @symbol = " ♟ "
     end
 
     def move_dirs

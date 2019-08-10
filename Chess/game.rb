@@ -19,11 +19,12 @@ class Game
         begin
         @display.selected = cursor_select_position
         @board.move_piece(@current_player, @display.selected, cursor_select_position)
+        opponent_color = (@current_player == :white) ? :black : :white
         rescue => e
             @display.selected = []
             puts "#{e}"
             sleep(2)
-            retry
+            retry unless @board.checkmate?(opponent_color)
         end
         @display.selected = []
         @display.show
@@ -38,7 +39,8 @@ class Game
         play until @board.checkmate?(@current_player)
         puts "#{@board.winner} wins!"
         puts "play again? enter 'y' for new game"
-        run if gets.chomp.downcase == "y"
+        response = gets.chomp.downcase == "y"
+        run if response == "y"
     end
 end
 

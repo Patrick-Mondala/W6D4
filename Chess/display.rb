@@ -27,12 +27,12 @@ class Display
                     ele.symbol.colorize(background: :green, color:ele.color)
                 elsif (first_back_ground_index.even?)
                     row_idx.even? ?
-                    ele.symbol.colorize(background: :blue, color:ele.color) :
-                    ele.symbol.colorize(background: :light_red, color:ele.color)
+                    ele.symbol.colorize(background: :light_black, color:ele.color) :
+                    ele.symbol.colorize(background: :cyan, color:ele.color)
                 else 
                     row_idx.odd? ?
-                    ele.symbol.colorize(background: :blue, color:ele.color) :
-                    ele.symbol.colorize(background: :light_red, color:ele.color)
+                    ele.symbol.colorize(background: :light_black, color:ele.color) :
+                    ele.symbol.colorize(background: :cyan, color:ele.color)
                 end
             end
             puts "#{visual_idx}" + row_to_s.join("")

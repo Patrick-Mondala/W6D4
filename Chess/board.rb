@@ -4,7 +4,7 @@ require_relative "pawn.rb"
 require_relative "null_piece.rb"
 
 class Board
-    attr_reader :sentinel
+    attr_reader :sentinel, :winner
     attr_accessor :rows
     def initialize
         @sentinel = NullPiece.instance
@@ -12,6 +12,7 @@ class Board
         @black_pieces = []
         @white_pieces = []
         populate_board
+        @winner = ""
     end
 
     def [](pos)
@@ -27,7 +28,7 @@ class Board
         starting_piece = self[start_pos]
         raise "there was no piece there" if starting_piece == @sentinel
         raise "piece can not move there" unless starting_piece.valid_moves.include?(end_pos)
-        raise "piece was not of your color" unless color == starting_piece.color
+        raise "it's #{color == :white ? :white : :black}'s turn" unless color == starting_piece.color
         move_piece!(color, start_pos, end_pos)
     end
 
@@ -51,13 +52,18 @@ class Board
         remove_piece(opponent_color, end_pos) unless self[end_pos] == @sentinel
         self[end_pos] = starting_piece
         self[start_pos] = @sentinel
+        checkmate?(opponent_color)
         starting_piece.pos = end_pos
     end
 
     def checkmate?(color)
         return false unless in_check?(color)
         current_pieces = living_pieces_by_color(color)
-        current_pieces.all? {|piece| piece.valid_moves.empty? }
+        if current_pieces.all? {|piece| piece.valid_moves.empty? }
+            @winner = color == :white ? "black" : "white"
+            return true
+        end
+        false
     end
 
     def in_check?(color)

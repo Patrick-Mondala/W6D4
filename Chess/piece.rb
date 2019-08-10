@@ -13,7 +13,7 @@ class Piece
     
     def valid_moves
         theoretic_board_states = []
-        self.moves.each do |move|
+        self.moves.uniq.each do |move|
             theoretic_board = DeepClone.clone(@board)
             theoretic_board.move_piece!(color, @pos, move)
             theoretic_board_states << [theoretic_board, move] unless theoretic_board.in_check?(color)

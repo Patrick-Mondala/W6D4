@@ -11,16 +11,28 @@ class Display
 
     def show
         system "clear"
-        puts "  --- --- --- --- --- --- --- ---"
         visual_idx = 8
+        first_back_ground_index = 1
+        second_back_ground_index = 2
         @board.rows.each_with_index do |row, row_idx|
-            puts "#{visual_idx}|" + row.map.with_index { |ele, col_idx| [row_idx, col_idx] == @cursor.cursor_pos ? 
-            ele.symbol.colorize(background: :blue, color:ele.color) : ele.to_s }
-            .join("|") + "|"
-            puts "  --- --- --- --- --- --- --- ---"
+            row_to_s = row.map.with_index do |ele, col_idx|
+                first_back_ground_index += 1
+                if [row_idx, col_idx] == @cursor.cursor_pos
+                    ele.symbol.colorize(background: :red, color:ele.color)
+                elsif (first_back_ground_index.even?)
+                    row_idx.even? ?
+                    ele.symbol.colorize(background: :blue, color:ele.color) :
+                    ele.symbol.colorize(background: :yellow, color:ele.color)
+                else 
+                    row_idx.odd? ?
+                    ele.symbol.colorize(background: :blue, color:ele.color) :
+                    ele.symbol.colorize(background: :yellow, color:ele.color)
+                end
+            end
+            puts "#{visual_idx}" + row_to_s.join("")
             visual_idx -= 1
         end
-        puts "   A   B   C   D   E   F   G   H"
+        puts "  A  B  C  D  E  F  G  H"
         @testing = false if @cursor.get_input.is_a?(Array)
     end
 

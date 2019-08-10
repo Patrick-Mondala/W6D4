@@ -18,15 +18,15 @@ class Display
             row_to_s = row.map.with_index do |ele, col_idx|
                 first_back_ground_index += 1
                 if [row_idx, col_idx] == @cursor.cursor_pos
-                    ele.symbol.colorize(background: :red, color:ele.color)
+                    ele.symbol.colorize(background: :green, color:ele.color)
                 elsif (first_back_ground_index.even?)
                     row_idx.even? ?
                     ele.symbol.colorize(background: :blue, color:ele.color) :
-                    ele.symbol.colorize(background: :yellow, color:ele.color)
+                    ele.symbol.colorize(background: :light_red, color:ele.color)
                 else 
                     row_idx.odd? ?
                     ele.symbol.colorize(background: :blue, color:ele.color) :
-                    ele.symbol.colorize(background: :yellow, color:ele.color)
+                    ele.symbol.colorize(background: :light_red, color:ele.color)
                 end
             end
             puts "#{visual_idx}" + row_to_s.join("")

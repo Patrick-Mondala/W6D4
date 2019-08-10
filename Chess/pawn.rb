@@ -31,7 +31,7 @@ class Pawn < Piece
     end
 
     def forward_dir
-        self.color == :white ? 1 : -1
+        self.color == :black ? 1 : -1
     end
 
     def forward_steps

@@ -39,7 +39,7 @@ class Game
         play until @board.checkmate?(@current_player)
         puts "#{@board.winner} wins!"
         puts "play again? enter 'y' for new game"
-        response = gets.chomp.downcase == "y"
+        response = gets.chomp.downcase
         run if response == "y"
     end
 end
